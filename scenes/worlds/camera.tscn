@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://1iky4y7ihmnn"]
+
+[ext_resource type="Script" uid="uid://welfgxrpinq6" path="res://scenes/worlds/camera.gd" id="1_j4tv8"]
+[ext_resource type="PackedScene" uid="uid://bq5lbh7quuyg0" path="res://assets/3D/guns/blasterH.glb" id="1_n2o3b"]
+
+[sub_resource type="Animation" id="Animation_pwkrr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qyxys"]
+resource_name = "side"
+length = 4.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.261799, 0, 0), Vector3(0.261799, 1.57778, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j4tv8"]
+resource_name = "up_down"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 1.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.05357, 0, 0), Vector3(0.219475, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qyxys"]
+_data = {
+&"RESET": SubResource("Animation_pwkrr"),
+&"side": SubResource("Animation_qyxys"),
+&"up_down": SubResource("Animation_j4tv8")
+}
+
+[node name="Camera" type="Node3D"]
+script = ExtResource("1_j4tv8")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="blasterH2" parent="Node3D" instance=ExtResource("1_n2o3b")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -0.101718, 0.197072)
+
+[node name="Node3D" type="Node3D" parent="Node3D/blasterH2"]
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 0, 0, 0.285008)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Node3D/blasterH2/Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 6.3573e-08, 0, -6.3573e-08, 1, 0, 0, 0)
+light_energy = 2.0
+spot_range = 2.75
+spot_angle = 20.0
+
+[node name="Rays" type="Node3D" parent="Node3D/blasterH2/Node3D"]
+unique_name_in_owner = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D/blasterH2/Node3D/Rays"]
+transform = Transform3D(1, -8.88178e-15, -1.77636e-15, 3.55271e-15, 1, 0, -1.77636e-15, 0, 1, 0, 0, 0)
+target_position = Vector3(0.5, 0, -2.5)
+collision_mask = 2
+
+[node name="RayCast3D2" type="RayCast3D" parent="Node3D/blasterH2/Node3D/Rays"]
+transform = Transform3D(1, -8.88178e-15, -1.77636e-15, 3.55271e-15, 1, 0, -1.77636e-15, 0, 1, 0, 0, 0)
+target_position = Vector3(-0.5, 0, -2.5)
+collision_mask = 2
+
+[node name="RayCast3D3" type="RayCast3D" parent="Node3D/blasterH2/Node3D/Rays"]
+transform = Transform3D(1, -8.88178e-15, -1.77636e-15, 3.55271e-15, 1, 0, -1.77636e-15, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 2
+
+[node name="Marker3D" type="Marker3D" parent="Node3D"]
+gizmo_extents = 1.69
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qyxys")
+}
+autoplay = "up_down"
+
+[node name="WarningDownTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="timeout" from="WarningDownTimer" to="." method="_on_warning_down_timer_timeout"]

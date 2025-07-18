@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ryn8i2nx6i3"]
+
+[ext_resource type="PackedScene" uid="uid://7vou4tar0yd0" path="res://assets/3D/space_station_kit/GLB format/container.glb" id="1_n8un1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a12vh"]
+height = 0.6375
+radius = 0.3
+
+[node name="Barrel" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.297338, 0)
+shape = SubResource("CylinderShape3D_a12vh")
+
+[node name="container2" parent="." instance=ExtResource("1_n8un1")]

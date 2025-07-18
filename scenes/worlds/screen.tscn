@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsa1n8akf3g6b"]
+
+[ext_resource type="Script" uid="uid://bvfu885ac6fuu" path="res://scenes/worlds/screen.gd" id="1_hrcpj"]
+[ext_resource type="PackedScene" uid="uid://bjxo33ot4j1uv" path="res://assets/3D/space_station_kit/GLB format/computer-screen.glb" id="1_n8nhr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hrcpj"]
+size = Vector3(0.8, 0.6, 0.35)
+
+[node name="Screen" type="StaticBody3D" groups=["interactable"]]
+collision_layer = 9
+collision_mask = 2
+script = ExtResource("1_hrcpj")
+
+[node name="computer-screen2" parent="." instance=ExtResource("1_n8nhr")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0.35, -0.025)
+shape = SubResource("BoxShape3D_hrcpj")

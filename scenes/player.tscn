@@ -1936,6 +1936,7 @@ current = true
 [node name="HandGun" parent="Camera3D" node_paths=PackedStringArray("parent") instance=ExtResource("4_fkybt")]
 unique_name_in_owner = true
 transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, 0.439723, -0.359249, -0.394502)
+visible = false
 parent = NodePath("../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]

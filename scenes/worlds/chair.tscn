@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://d03bstpqiivc2"]
+
+[ext_resource type="PackedScene" uid="uid://cbgckhxjf385o" path="res://assets/3D/space_station_kit/GLB format/chair-armrest-headrest.glb" id="1_1ckq0"]
+[ext_resource type="Script" uid="uid://bo3i87ynw5x5g" path="res://scenes/worlds/chair.gd" id="1_yf3kj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf3kj"]
+size = Vector3(0.5, 0.7, 0.45)
+
+[sub_resource type="Animation" id="Animation_yf3kj"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, -0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.309, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hmr41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlnks"]
+_data = {
+&"RESET": SubResource("Animation_hmr41"),
+&"move": SubResource("Animation_yf3kj")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Chair" type="StaticBody3D" parent="." groups=["interactable"]]
+collision_layer = 8
+script = ExtResource("1_yf3kj")
+
+[node name="chair-armrest-headrest2" parent="Chair" instance=ExtResource("1_1ckq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chair"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_yf3kj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Chair"]
+libraries = {
+&"": SubResource("AnimationLibrary_qlnks")
+}
