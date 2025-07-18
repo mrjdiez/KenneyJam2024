@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cea4y3q08uawb"]
+
+[ext_resource type="PackedScene" uid="uid://dq6dgjgf85ujc" path="res://assets/3D/space_station_kit/GLB format/floor.glb" id="1_nt056"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hroir"]
+size = Vector3(1, 0.30249, 1)
+
+[node name="Floor" type="StaticBody3D"]
+collision_mask = 2
+
+[node name="floor2" parent="." instance=ExtResource("1_nt056")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154907, 0)
+shape = SubResource("BoxShape3D_hroir")

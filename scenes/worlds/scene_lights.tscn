@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bekvcgvsvfuib"]
+
+[ext_resource type="Script" uid="uid://tc42nxfudsy4" path="res://scenes/worlds/scene_lights.gd" id="1_7vhgb"]
+
+[node name="SceneLights" type="OmniLight3D"]
+script = ExtResource("1_7vhgb")

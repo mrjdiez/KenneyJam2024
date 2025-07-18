@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc4cxd3xieu8c"]
+
+[ext_resource type="PackedScene" uid="uid://blwfhule23g3d" path="res://assets/3D/space_station_kit/GLB format/wall.glb" id="1_lnpjv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eumt4"]
+size = Vector3(1, 0.990967, 0.299927)
+
+[node name="Wall" type="StaticBody3D"]
+collision_mask = 2
+
+[node name="wall2" parent="." instance=ExtResource("1_lnpjv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505005, -0.0010376)
+shape = SubResource("BoxShape3D_eumt4")

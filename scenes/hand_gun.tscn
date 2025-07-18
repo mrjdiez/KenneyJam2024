@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://i4y5nfsi6esc"]
+
+[ext_resource type="Script" uid="uid://dfuuh6jk1v3gf" path="res://scenes/hand_gun.gd" id="1_rtao0"]
+[ext_resource type="PackedScene" uid="uid://bdcbwgkbjd4o4" path="res://assets/3D/guns/pistol.glb" id="2_1l2f7"]
+
+[node name="HandGun" type="Node3D" node_paths=PackedStringArray("bullet_origin", "cooldown_timer")]
+script = ExtResource("1_rtao0")
+gun_cooldown = 0.5
+automatic = true
+bullet_origin = NodePath("Gun/BulletOrigin")
+cooldown_timer = NodePath("Cooldown")
+
+[node name="Gun" parent="." instance=ExtResource("2_1l2f7")]
+unique_name_in_owner = true
+
+[node name="BulletOrigin" type="Marker3D" parent="Gun"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00236231, 0.207812, 0.185779)
+
+[node name="Bullets" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Cooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

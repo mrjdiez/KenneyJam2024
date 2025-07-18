@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvkso3wnttibp"]
+
+[ext_resource type="Script" uid="uid://db615v122vu4l" path="res://scenes/bullet.gd" id="1_xjght"]
+[ext_resource type="PackedScene" uid="uid://d0rgsabt23uhp" path="res://assets/3D/guns/ammo_uzi.glb" id="2_y25gk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oduel"]
+radius = 0.0173359
+
+[node name="Bullet" type="CharacterBody3D"]
+top_level = true
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_xjght")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(-0.00331955, 0, 0.199988, 0, 0.2, 0, -0.299982, 0, -0.00221304, 0, 0, 0)
+visible = false
+radius = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0177049)
+shape = SubResource("SphereShape3D_oduel")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Components" type="Node3D" parent="."]
+
+[node name="ammo_uzi2" parent="." instance=ExtResource("2_y25gk")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0122208, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
