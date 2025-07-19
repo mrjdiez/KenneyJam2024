@@ -1870,7 +1870,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvnsp"]
 size = Vector3(0.307983, 0.494812, 0.105225)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["game_state_watcher"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_cvnsp")

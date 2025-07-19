@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwqobqn0emdtt"]
+
+[ext_resource type="Script" uid="uid://bkaeuxojx8uxu" path="res://scenes/end.gd" id="1_bvfni"]
+[ext_resource type="Texture2D" uid="uid://c5sfnuc3rcwkp" path="res://assets/2D/UI/glassPanel_corners.png" id="1_p7m4f"]
+[ext_resource type="Texture2D" uid="uid://bi6ulv44bh2wo" path="res://assets/2D/UI/blue_button02.png" id="2_bvfni"]
+[ext_resource type="Texture2D" uid="uid://i0838fdl0es5" path="res://assets/2D/UI/blue_button03.png" id="3_s4tl2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hmjt"]
+font_size = 48
+
+[node name="End" type="Control" groups=["game_state_watcher"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvfni")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ReferenceRect" type="ReferenceRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+border_width = 3.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_p7m4f")
+patch_margin_left = 25
+patch_margin_top = 50
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Target Acchieved"
+label_settings = SubResource("LabelSettings_8hmjt")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "You've managed to shutdown the satellite successfully. 
+As the last lights in the computer power down, you sit on the captain's chair and watch as the lights on the other satellites in the network turn off. 
+It seems most of you friend have acchieved their purpose. 
+Now you only need to wait until you allies on the surface manage to send a rescue team. "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="TextureButton" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_bvfni")
+texture_pressed = ExtResource("3_s4tl2")
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/RetryButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_bvfni")
+texture_pressed = ExtResource("3_s4tl2")
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

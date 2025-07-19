@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://c73fqk54ticjk"]
+
+[ext_resource type="Script" uid="uid://ip8xts44coac" path="res://scenes/game_over.gd" id="1_racf3"]
+[ext_resource type="Texture2D" uid="uid://c5sfnuc3rcwkp" path="res://assets/2D/UI/glassPanel_corners.png" id="1_tbwuq"]
+[ext_resource type="Texture2D" uid="uid://bi6ulv44bh2wo" path="res://assets/2D/UI/blue_button02.png" id="2_racf3"]
+[ext_resource type="Texture2D" uid="uid://i0838fdl0es5" path="res://assets/2D/UI/blue_button03.png" id="3_7m3ot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3hpu"]
+font_size = 48
+
+[node name="GameOver" type="Control" groups=["game_state_watcher"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_racf3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ReferenceRect" type="ReferenceRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+border_width = 3.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_tbwuq")
+patch_margin_left = 25
+patch_margin_top = 50
+patch_margin_right = 25
+patch_margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_v3hpu")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "You have been caught by the AI and reduced to dust. 
+You will never know if your team managed to complete their missions."
+horizontal_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_racf3")
+texture_pressed = ExtResource("3_7m3ot")
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/RetryButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_racf3")
+texture_pressed = ExtResource("3_7m3ot")
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
