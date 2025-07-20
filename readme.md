@@ -11,7 +11,6 @@ Controls
 
 WASD -> Move in the world
 E -> Interact with the computers to shut down local energy supply
-SPACE -> Jump
-Esc -> Pause???
+Esc -> Pause
 
 License: https://godotengine.org/license/
